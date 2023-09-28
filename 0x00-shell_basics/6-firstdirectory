@@ -1,2 +1,16 @@
 #!/bin/bash
+
+# Check if /tmp directory exists, and create it if it doesn't
+if [ ! -d "/tmp" ]; then
+    mkdir /tmp
+fi
+
+# Create the my_first_directory in /tmp
 mkdir -p /tmp/my_first_directory
+
+# Check if the directory was created successfully
+if [ -d "/tmp/my_first_directory" ]; then
+    echo "/tmp/my_first_directory: directory"
+else
+    echo "Failed to create /tmp/my_first_directory"
+fi
