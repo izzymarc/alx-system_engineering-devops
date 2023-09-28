@@ -1,2 +1,2 @@
 #!/bin/bash
-[ -d /tmp ] || mkdir /tmp && mkdir -p /tmp/my_first_directory && echo "/tmp/my_first_directory: directory" || echo "Failed to create /tmp/my_first_directory"
+mkdir -p /tmp/my_first_directory
