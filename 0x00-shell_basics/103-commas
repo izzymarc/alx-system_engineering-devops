@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -Ap | sed '1d' | awk '{printf "%s, ", $0} END {print ""}'
+ls -1Ap | awk '{ORS = NR % 2 ? ", " : "\n"; print}' | sed 's/,$/\n/'
