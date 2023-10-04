@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type f -name '*.gif' -exec sh -c 'printf "%s\n" "$(basename "${0%.*}" | tr "[:upper:]" "[:lower:]")"' {} \; | sort
+find . -type f -name "*.gif" -exec ls -1 {} + | sed 's/\.gif$//' | sort -f
