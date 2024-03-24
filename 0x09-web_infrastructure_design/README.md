@@ -1,6 +1,3 @@
-# 0x09. Web infrastructure design
-
-## Description
-
-This project contains links to diagrams representing different web infrastructures.
-Its goal is to understand, on a very high-level, how web infrastructures are organized and what are their components.
+0x09. Design of Web Infrastructure
+Overview
+This project includes a series of diagrams that depict various web infrastructure setups. The objective is to gain a broad understanding of the organization and components of web infrastructures.
