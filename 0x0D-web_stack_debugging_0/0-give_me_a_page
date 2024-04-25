@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
-# run apache on designated container
 
-echo "ServerName localhost" >> /etc/apache2.conf
+# Start Apache and set ServerName
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
 service apache2 start
+
+# Check if Apache is running
+if ps aux | grep "[a]pache2" > /dev/null; then
+    echo "apache2 is running"
+else
+    echo "apache2 is not running"
+fi
