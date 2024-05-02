@@ -1,10 +1,5 @@
-tart Apache and set ServerName
-echo "ServerName localhost" >> /etc/apache2/apache2.conf
-service apache2 start
+#!/usr/bin/env bash
+# Turned on Apache Server with this magic line
 
-# Check if Apache is running
-if pgrep apache2 > /dev/null; then
-	    echo "apache2 is running"
-    else
-	        echo "apache2 is not running"
-fi
+echo "ServerName localhost" >> /etc/apache2.conf
+service apache2 start
