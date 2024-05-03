@@ -34,18 +34,15 @@ defaults
         option forwardfor
         option http-server-close
 
-frontend besthor_front_end
+frontend izzymarc_front_end
     bind *:80
     bind *:443 ssl crt /etc/haproxy/certs/www.izzymarc.tech.pem
     http-request redirect scheme https unless { ssl_fc }
     http-request set-header X-Forwarded-Proto https
-    default_backend besthor_back_end
+    default_backend izzymarc_back_end
 
-backend besthor_back_end
+backend izzymarc_back_end
     balance roundrobin
     
     server 530517-web-01 54.90.7.215:80 check
-    server 530517-web-02 18.204.6.148:80  check
-
-backend letsencrypt-backend
-    server letsencrypt 127.0.0.1:54321
+    server 530517-web-02 18.204.6.148:80 check
