@@ -1,19 +1,28 @@
 #!/usr/bin/env bash
-# Shows information about subdomains.
+# This script fetches and displays DNS A records for specific subdomains.
 
-domain_information() {
-    local domain="$1"
-    local subdomain="$2"
-    local line
-    line=$(dig "$subdomain"."$domain" | awk '/ANSWER SECTION:/ {getline; print; getline; print}')
-    echo "$subdomain $line" | awk '{printf "The subdomain %s is a %s record and points to %s\n", $1, $2, $3}'
+# Function to fetch and display DNS A record information
+function fetch_dns_record() {
+    local domain=$1
+    local subdomain=$2
+    local ip=$(dig +short "${subdomain}.${domain}" A)
+    if [[ -z "$ip" ]]; then
+        echo "No DNS record found for ${subdomain}.${domain}"
+    else
+        echo "The subdomain ${subdomain} is a A record and points to ${ip}"
+    fi
 }
 
-if [ "$#" -eq 1 ]; then
-    domain_information "$1" "www"
-    domain_information "$1" "lb-01"
-    domain_information "$1" "web-01"
-    domain_information "$1" "web-02"
-elif [ "$#" -eq 2 ]; then
-    domain_information "$1" "$2"
+# Validate input and call function accordingly
+if [[ "$#" -eq 1 ]]; then
+    # If only domain is provided, check for all required subdomains
+    fetch_dns_record "$1" "www"
+    fetch_dns_record "$1" "lb-01"
+    fetch_dns_record "$1" "web-01"
+    fetch_dns_record "$1" "web-02"
+elif [[ "$#" -eq 2 ]]; then
+    # If both domain and subdomain are provided, check specific subdomain
+    fetch_dns_record "$1" "$2"
+else
+    echo "Usage: $0 <domain> [subdomain]"
 fi
